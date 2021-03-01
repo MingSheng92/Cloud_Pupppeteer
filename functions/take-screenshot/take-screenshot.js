@@ -1,5 +1,6 @@
 const chromium = require('chrome-aws-lambda');
 
+//https://bitsofco.de/how-to-use-puppeteer-in-a-netlify-aws-lambda-function/
 exports.handler = async (event, context) => {
 
     const pageToScreenshot = JSON.parse(event.body).pageToScreenshot;
@@ -9,7 +10,7 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ message: 'Page URL not defined' })
     }
     
-    if (!process.env.NETLIFY) {
+    if (process.env.NETLIFY) {
         const puppeteer = require('puppeteer-core');
         const browser = await puppeteer.launch({
             // Required
