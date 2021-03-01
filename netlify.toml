@@ -2,19 +2,3 @@
   command = "npm run build"
   publish = "public/"
   functions = "functions/" 
-  
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    Content-Security-Policy = "frame-ancestors https://www.facebook.com"
-    X-Content-Type-Options = "nosniff"
-    Feature-Policy = "camera 'none'; geolocation 'none'; microphone 'none'"
-
-    # Multi-value headers are expressed with multi-line strings.
-	  cache-control = '''
-	  max-age=0,
-	  no-cache,
-	  no-store,
-	  must-revalidate'''
