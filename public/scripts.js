@@ -14,6 +14,7 @@ document.querySelector('button[type="submit"]').addEventListener('click', (e) =>
     e.preventDefault();
 
     const pageToScreenshot = document.getElementById('page').value;
+    console.log(pageToScreenshot)
 
     if (!pageToScreenshot) return document.getElementById('result').textContent = 'Please enter a page URL';
 
