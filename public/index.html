@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <main>
@@ -14,12 +15,10 @@
 
         <form>
             <input type="url" id="page" aria-label="URL" value="https://bitsofco.de">
-            <button type="submit">Screenshot!</button>
+            <button type="submit" onclick="return onBtnClicked(event)">Screenshot!</button>
         </form>
 
         <div id="result" aria-live="polite"></div>
     </main>
-    
-    <script src="script.js"></script>
 </body>
 </html>

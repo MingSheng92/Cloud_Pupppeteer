@@ -9,12 +9,12 @@ function bufferToImageUrl(buffer) {
     return imageUrl;
 }
 
-document.querySelector('button[type="submit"]').addEventListener('click', (e) => {
-
+function onBtnClicked(e) {
     e.preventDefault();
 
     const pageToScreenshot = document.getElementById('page').value;
-    console.log(pageToScreenshot)
+
+    document.getElementById('result').textContent = "Please wait..."
 
     if (!pageToScreenshot) return document.getElementById('result').textContent = 'Please enter a page URL';
 
@@ -23,8 +23,6 @@ document.querySelector('button[type="submit"]').addEventListener('click', (e) =>
         headers: { "Content-Type": "application/json; charset=utf-8" },
         body: JSON.stringify({ pageToScreenshot: pageToScreenshot })
     };
-
-    document.getElementById('result').textContent = "Please wait..."
 
     fetch("/.netlify/functions/take-screenshot", options)
         .then((res) => res.json())
@@ -40,4 +38,40 @@ document.querySelector('button[type="submit"]').addEventListener('click', (e) =>
             console.log(err)
             document.getElementById('result').textContent = `Error: ${err.toString()}`
         });
+}
+
+
+/*
+document.querySelector('button[type="submit"]').addEventListener('click', (e) => {
+    console.log("");
 });
+    e.preventDefault();
+
+    const pageToScreenshot = document.getElementById('page').value;
+
+    document.getElementById('result').textContent = `Error: ${pageToScreenshot.toString()}`
+    document.getElementById('result').textContent = "Please wait..."
+
+    if (!pageToScreenshot) return document.getElementById('result').textContent = 'Please enter a page URL';
+
+    const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        body: JSON.stringify({ pageToScreenshot: pageToScreenshot })
+    };
+
+    fetch("/.netlify/functions/take-screenshot", options)
+        .then((res) => res.json())
+        .then((res) => {
+            
+            if (!res.buffer) return document.getElementById('result').textContent = 'Error capturing screenshot';
+
+            const img = document.createElement('img');
+            img.src = bufferToImageUrl(res.buffer.data);
+            document.getElementById('result').innerHTML = img.outerHTML;
+        })
+        .catch((err) => {
+            console.log(err)
+            document.getElementById('result').textContent = `Error: ${err.toString()}`
+        });
+*/

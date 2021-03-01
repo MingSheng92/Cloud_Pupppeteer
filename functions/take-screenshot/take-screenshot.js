@@ -1,3 +1,4 @@
+const puppeteer = require('puppeteer-core');
 const chromium = require('chrome-aws-lambda');
 
 exports.handler = async (event, context) => {
@@ -9,11 +10,20 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ message: 'Page URL not defined' })
     }
 
-    const browser = await chromium.puppeteer.launch({
+    /*const browser = await chromium.puppeteer.launch({
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
         executablePath: await chromium.executablePath,
         headless: chromium.headless,
+    });*/
+    const browser = await puppeteer.launch({
+        // Required
+        executablePath: await chromium.executablePath,
+
+        // Optional
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        headless: chromium.headless
     });
     
     const page = await browser.newPage();
